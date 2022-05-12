@@ -1,3 +1,3 @@
-# w3w-swift-components-street-addresses
+# w3w-swift-components-address-validator
 
 A description of this package.
