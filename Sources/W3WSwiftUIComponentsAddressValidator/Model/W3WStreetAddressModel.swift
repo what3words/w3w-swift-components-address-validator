@@ -165,7 +165,13 @@ public class W3WStreetAddressModel: ObservableObject {
   
   /// resets the component
   public func reset() {
+    stopApiCalls()
     set(state: .idle)
+  }
+  
+  
+  public func stopApiCalls() {
+    service?.cancel()
   }
   
   
@@ -402,7 +408,12 @@ public class W3WStreetAddressModel: ObservableObject {
     DispatchQueue.main.async {
       // don't bother updating if the state is the same
       if self.state != state {
+        print("STATE: ", self.state, " -> ", state)
         self.state = state
+      }
+      
+      if state != .communicating {
+        self.stopApiCalls()
       }
     }
   }

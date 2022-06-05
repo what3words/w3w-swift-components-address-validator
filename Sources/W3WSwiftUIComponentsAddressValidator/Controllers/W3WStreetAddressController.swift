@@ -61,7 +61,7 @@ class W3WStreetAddressController {
   
   
   func onCancel() {
-    // TODO: add cancel socket here
+    model.stopApiCalls()
     model.set(state: .idle)
     model.stopRecording()
   }
