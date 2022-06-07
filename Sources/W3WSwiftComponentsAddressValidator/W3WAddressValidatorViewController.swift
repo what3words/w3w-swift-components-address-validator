@@ -103,6 +103,22 @@ public class W3WAddressValidatorViewController: UINavigationController, UINaviga
   }
   
   
+  // MARK: Accessors
+
+  
+  public func set(display: String) {
+    if w3w.isPossible3wa(text: display) {
+      w3w.autosuggest(text: display) { suggestions, error in
+        if let suggestion = suggestions?.first {
+          DispatchQueue.main.async {
+            self.searchField.set(display: suggestion)
+          }
+        }
+      }
+    }
+  }
+  
+  
   // MARK: viewDidLoad
   
   
@@ -139,6 +155,7 @@ public class W3WAddressValidatorViewController: UINavigationController, UINaviga
 //    }
   }
 
+  
   // MARK: takin' care o' bidness (business logic)
   
   
