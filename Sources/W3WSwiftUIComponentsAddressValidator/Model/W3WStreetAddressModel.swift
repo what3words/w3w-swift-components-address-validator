@@ -8,10 +8,12 @@
 import Foundation
 import W3WSwiftApi
 import CoreLocation
+import W3WSwiftInterfaceCommon
 import W3WSwiftAddressValidators
 import W3WSwiftUIInterfaceElements
 
 
+/// state for the model
 public enum W3WAddressModelState {
   case idle
   case listening
@@ -24,6 +26,7 @@ public enum W3WAddressModelState {
 }
 
 
+/// indicates the method on input
 public enum W3WAddressInputMethod {
   case mic
   case text
@@ -422,7 +425,7 @@ public class W3WStreetAddressModel: ObservableObject {
   /// figure out the state for the mic given the state of the model
   /// - Parameters:
   ///     - volume: the current amplitude
-  func micStateFromModelState() -> W3WMicrophoneSwiftUIState {
+  func micStateFromModelState() -> W3WVoiceViewState {
     if state == .communicating {
       return .sending
     } else if state == .error {

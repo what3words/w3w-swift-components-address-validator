@@ -13,42 +13,53 @@ import W3WSwiftAddressValidators
 import SwiftUI
 
 
-class W3WAddressValidatorSummayView: W3WViewController {
+/// shows an address and asks the user to confirm the information
+public class W3WAddressValidatorSummayViewController: W3WViewController {
   
+  // called when the user presses the [confirm] button
   var onConfirm: (W3WValidatorNodeLeaf) -> () = { _ in }
   
-  let addressTable = W3WAddressValidatorTableViewController()
+  // a summary of the address info
+  lazy var addressSummary = W3WStreetAddressSummaryView(node: self.address)
+  
+  // the node containing the W3WSuggestion
   var suggestionNode: W3WValidatorNodeSuggestion!
   
+  // the suggestion
   let suggestion: W3WSuggestion
+  
+  // the street address
   let address: W3WValidatorNodeLeaf
 
-  init(suggestion: W3WSuggestion, address: W3WValidatorNodeLeaf, colors: W3WColorSet = .lightDarkMode) {
+  
+  /// instantiate a W3WAddressValidatorSummayViewController
+  /// - Parameters:
+  ///     - suggestion: the suggestion to show
+  ///     - address: the node containing the street address
+  ///     - colors: the colour set to use (optional)
+  public init(suggestion: W3WSuggestion, address: W3WValidatorNodeLeaf, colors: W3WColorSet = .lightDarkMode) {
     self.suggestion = suggestion
     self.address = address
 
     super.init(nibName: nil, bundle: nil)
 
     self.colors = colors
-    addressTable.colors = colors
   }
   
-  
+
+  /// not supported yet
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   
   
-  override func viewDidLoad() {
+  override public func viewDidLoad() {
     super.viewDidLoad()
 
-    let suggestionNode = W3WValidatorNodeSuggestion(suggestion: suggestion)
+    // add the summry sub view
+    view.addSubview(addressSummary)
     
-    addressTable.set(items: [suggestionNode, address])
-    addressTable.view.layer.borderColor = W3WColor.iosTertiaryLabel.current.cgColor
-    addressTable.view.layer.borderWidth = 0.5
-    view.addSubview(addressTable.view)
-    
+    // make and add a confirm button
     let confirmButton = UIBarButtonItem(title: "Confirm", style: .done, target: self, action: #selector(buttonPressed))
     confirmButton.title = "Confirm"
     self.navigationItem.rightBarButtonItem = confirmButton
@@ -56,6 +67,7 @@ class W3WAddressValidatorSummayView: W3WViewController {
 
   
   // MARK: Events
+  
   
   @objc
   func buttonPressed() {
@@ -68,7 +80,7 @@ class W3WAddressValidatorSummayView: W3WViewController {
   
   // update subview positions
   public override func viewWillLayoutSubviews() {
-    addressTable.tableView.frame = getAddressFrame()
+    addressSummary.frame = getAddressFrame()
   }
 
   
@@ -79,7 +91,7 @@ class W3WAddressValidatorSummayView: W3WViewController {
       insets = view.safeAreaInsets
     }
 
-    return CGRect(x: W3WPadding.heavy.value + insets.left, y: W3WPadding.heavy.value + insets.top, width: view.frame.width - W3WPadding.heavy.value * 2.0, height: addressTable.getIdealHeight())
+    return CGRect(x: W3WPadding.heavy.value + insets.left, y: W3WPadding.heavy.value + insets.top, width: view.frame.width - W3WPadding.heavy.value * 2.0, height: 113.0)
   }
   
   

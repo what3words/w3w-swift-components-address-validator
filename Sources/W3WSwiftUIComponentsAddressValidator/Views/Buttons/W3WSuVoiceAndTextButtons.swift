@@ -11,6 +11,7 @@ import W3WSwiftDesign
 import W3WSwiftUIInterfaceElements
 
 
+/// a voice and a text button for the user to decide an input method
 public struct W3WSuVoiceAndTextButtons: View {
   
   var colors: W3WColorSet

@@ -7,16 +7,12 @@
 
 import SwiftUI
 import W3WSwiftApi
+import W3WSwiftDesign
 
 
 extension W3WSettings {
 
   static var tapTogglesRecording = true
-  
-  public static let w3wMicOnColor   = Color(red: 225/256,  green:  31/256,  blue:  38/256)
-  public static let w3wMicOffColor  = Color(red: 256/256,  green: 256/256,  blue: 256/256)
-  public static let micHaloColor    = Color(red: 225/256,  green:  31/256,  blue:  38/256)
-  public static let w3wSlashesColor = Color(red: 256/256,  green: 256/256,  blue: 256/256)
 
 #if os(watchOS) || os(iOS)
 

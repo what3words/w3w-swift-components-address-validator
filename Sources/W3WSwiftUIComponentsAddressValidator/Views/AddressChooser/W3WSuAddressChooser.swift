@@ -10,12 +10,22 @@ import W3WSwiftApi
 import W3WSwiftAddressValidators
 
 
+/// lists items from the W3WValidatorNode provided
 public struct W3WSuAddressChooser: View {
 
+  /// the data model
   @ObservedObject var model: W3WStreetAddressModel
+  
+  /// the node to show values for
   var node: W3WValidatorNode
+  
+  /// the colours to use
   let colors: W3WSuAddressValidatorColors
+  
+  /// closure called when the user selects an address
   var onAddressSelected: (W3WValidatorNodeLeaf?) -> ()
+  
+  /// the microphone button callback
   var onMicrophoneTap: () -> ()
 
 
@@ -25,8 +35,6 @@ public struct W3WSuAddressChooser: View {
     self.colors            = colors
     self.onAddressSelected = onAddressSelected
     self.onMicrophoneTap   = onMicrophoneTap
-
-    //print("W3WAddressChooserSwiftUI Showing Node: ", "node.self", node.name, node.words, node.code)
   }
 
 
@@ -115,8 +123,3 @@ extension ScrollView {
 }
 #endif
 
-//struct W3WAddressChooserSwiftUI_Previews: PreviewProvider {
-//    static var previews: some View {
-//      W3WAddressChooserSwiftUI()
-//    }
-//}

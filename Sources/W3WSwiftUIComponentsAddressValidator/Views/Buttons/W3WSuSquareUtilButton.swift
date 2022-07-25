@@ -9,6 +9,7 @@ import SwiftUI
 import W3WSwiftApi
 
 
+/// a square utility button
 @available(iOS 13.0, *)
 public struct W3WSuSquareUtilButton: View {
   

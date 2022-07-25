@@ -13,6 +13,7 @@ import W3WSwiftDesign
 import W3WSwiftInterfaceElements
 import W3WSwiftComponents
 import W3WSwiftAddressValidators
+//import W3WSwiftComponentsInternal
 
 
 // expose these types from the W3WSwiftAddressValidators dependancy
@@ -24,7 +25,7 @@ public typealias W3WColor                 = W3WSwiftDesign.W3WColor
 public typealias W3WColorSet             = W3WSwiftDesign.W3WColorSet
 
 
-public class W3WAddressValidatorViewController: UINavigationController, UINavigationControllerDelegate { //}, UISearchControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating {
+open class W3WAddressValidatorViewController: UINavigationController, UINavigationControllerDelegate, W3WOptionAcceptorProtocol {
 
   // MARK: Callbacks
   
@@ -42,63 +43,124 @@ public class W3WAddressValidatorViewController: UINavigationController, UINaviga
   // what3words api or sdk
   var w3w: W3WProtocolV3!
   
+  /// this communicates with the w3w server
+  var autosuggest: W3WAutosuggestHelper!
+  
+  /// options to use for autosuggest
+  var options: [W3WOption]?
+  
+  // langauge code to use for voice input
+  var voiceInputLanguage = "en"
+  
   // the api for the address validator
   var service: W3WAddressValidatorProtocol
 
   // the input text field
-  var searchField: W3WAutoSuggestSearchController! // W3WSearchController!
+  public var searchField: W3WSearchController! // W3WAutoSearchController! // W3WAutoSuggestSearchController! //
   
   // default colors
   var colors = W3WColorSet.lightDarkMode
   
+  // mode to launch in:  voice or text
+  var launchMode = W3WAddressValidatorLaunchMode.text
+  
   // root view controller
   let rootViewController = W3WViewController()
+
+  // the input voice view
+  var voiceViewController: W3WVoiceViewController?
+  
+  // the table view that holds the suggestions
+  let addressValidatorViewController = W3WAddressValidatorTableViewController()
+
+  // allows or disables a final address confirmation screen
+  public var skipConfirmStep = false
   
   
   // MARK: Init
   
   
-  public init(w3w: W3WProtocolV3, service: W3WAddressValidatorProtocol, colors: W3WColorSet = .lightDarkMode) {
+  /// initialize with a address validator service
+  /// - Parameters:
+  ///     - w3w: the w3w API or SDK
+  ///     - service: a street address validator service conforming to W3WAddressValidatorProtocol
+  ///     - colors: A W3WColorSet specifying the colours to use (optional)
+  ///     - launchMode: tells the component to launch directly into voice or text mode
+  public init(w3w: W3WProtocolV3, service: W3WAddressValidatorProtocol, colors: W3WColorSet = .lightDarkMode, launchMode: W3WAddressValidatorLaunchMode = .text) {
+    self.launchMode = launchMode
     self.w3w = w3w
+    self.colors = colors
+    self.autosuggest = W3WAutosuggestHelper(w3w)
+    if let api = w3w as? What3WordsV3 {
+      self.voiceViewController = W3WVoiceViewController(api: api)
+    }
     self.service = service
-    self.colors = colors
-    
-    super.init(rootViewController: rootViewController)
+    super.init(rootViewController: launchMode == .voice ? voiceViewController ?? rootViewController : rootViewController)
     self.delegate = self
   }
   
   
-  public init(w3w: W3WProtocolV3, data8ApiKey: String, colors: W3WColorSet = .lightDarkMode) {
+  /// initialize with a Data8
+  /// - Parameters:
+  ///     - w3w: the w3w API or SDK
+  ///     - data8ApiKey: you API key for Data8
+  ///     - colors: A W3WColorSet specifying the colours to use (optional)
+  ///     - launchMode: tells the component to launch directly into voice or text mode
+  public init(w3w: W3WProtocolV3, data8ApiKey: String, colors: W3WColorSet = .lightDarkMode, launchMode: W3WAddressValidatorLaunchMode = .text) {
+    self.launchMode = launchMode
     self.w3w = w3w
+    self.colors = colors
+    self.autosuggest = W3WAutosuggestHelper(w3w)
+    if let api = w3w as? What3WordsV3 {
+      self.voiceViewController = W3WVoiceViewController(api: api)
+    }
     self.service = W3WAddressValidatorData8(key: data8ApiKey)
-    self.colors = colors
-
-    super.init(rootViewController: rootViewController)
+    super.init(rootViewController: launchMode == .voice ? voiceViewController ?? rootViewController : rootViewController)
     self.delegate = self
   }
   
   
-  public init(w3w: W3WProtocolV3, swiftCompleteApiKey: String, colors: W3WColorSet = .lightDarkMode) {
+  /// initialize with a Swift Complete
+  /// - Parameters:
+  ///     - w3w: the w3w API or SDK
+  ///     - swiftCompleteApiKey: you API key for Swift Complete
+  ///     - colors: A W3WColorSet specifying the colours to use (optional)
+  ///     - launchMode: tells the component to launch directly into voice or text mode
+  public init(w3w: W3WProtocolV3, swiftCompleteApiKey: String, colors: W3WColorSet = .lightDarkMode, launchMode: W3WAddressValidatorLaunchMode = .text) {
+    self.launchMode = launchMode
     self.w3w = w3w
+    self.colors = colors
+    self.autosuggest = W3WAutosuggestHelper(w3w)
+    if let api = w3w as? What3WordsV3 {
+      self.voiceViewController = W3WVoiceViewController(api: api)
+    }
     self.service = W3WAddressValidatorSwiftComplete(key: swiftCompleteApiKey)
-    self.colors = colors
-
-    super.init(rootViewController: rootViewController)
+    super.init(rootViewController: launchMode == .voice ? voiceViewController ?? rootViewController : rootViewController)
     self.delegate = self
   }
   
   
-  public init(w3w: W3WProtocolV3, loqateApiKey: String, colors: W3WColorSet = .lightDarkMode) {
+  /// initialize with a Loqate
+  /// - Parameters:
+  ///     - w3w: the w3w API or SDK
+  ///     - loqateApiKey: you API key for Loqate
+  ///     - colors: A W3WColorSet specifying the colours to use (optional)
+  ///     - launchMode: tells the component to launch directly into voice or text mode
+  public init(w3w: W3WProtocolV3, loqateApiKey: String, colors: W3WColorSet = .lightDarkMode, launchMode: W3WAddressValidatorLaunchMode = .text) {
+    self.launchMode = launchMode
     self.w3w = w3w
-    self.service = W3WAddressValidatorLoqate(w3w: w3w, key: loqateApiKey)
     self.colors = colors
-
-    super.init(rootViewController: rootViewController)
+    self.autosuggest = W3WAutosuggestHelper(w3w)
+    if let api = w3w as? What3WordsV3 {
+      self.voiceViewController = W3WVoiceViewController(api: api)
+    }
+    self.service = W3WAddressValidatorLoqate(w3w: w3w, key: loqateApiKey)
+    super.init(rootViewController: launchMode == .voice ? voiceViewController ?? rootViewController : rootViewController)
     self.delegate = self
   }
   
   
-  required init?(coder: NSCoder) {
+  required public init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   
@@ -106,53 +168,130 @@ public class W3WAddressValidatorViewController: UINavigationController, UINaviga
   // MARK: Accessors
 
   
-  public func set(display: String) {
-    if w3w.isPossible3wa(text: display) {
-      w3w.autosuggest(text: display) { suggestions, error in
-        if let suggestion = suggestions?.first {
-          DispatchQueue.main.async {
-            self.searchField.set(display: suggestion)
-          }
+  /// set the options to use in autosuggest calls
+  public func set(options: [W3WOption]) {
+    self.options = options
+  }
+  
+
+  /// set the sugggestions to show
+  public func set(suggestions: [W3WSuggestion]) {
+    if suggestions.count == 1 {
+      if let words = suggestions.first?.words {
+        self.suggestion = suggestions.first
+        self.service.search(near: words) { addresses, error in
+          self.dealWithErrorIfAny(error: error)
+          self.addressValidatorViewController.set(items: addresses)
         }
+        return
       }
     }
+
+    autosuggest.suggestions = suggestions
+    addressValidatorViewController.set(items: suggestionsToNodes(suggestions: suggestions))
   }
   
   
   // MARK: viewDidLoad
   
   
-  public override func viewDidLoad() {
+  open override func viewDidLoad() {
     super.viewDidLoad()
 
-    // give the tableview to the searchfield
-    searchField = W3WAutoSuggestSearchController()
-    searchField.set(w3w)
-    searchField.set(voice: true)
-    rootViewController.navigationItem.searchController = searchField
-    searchField.automaticallyShowsCancelButton = false
-    
-    self.additionalSafeAreaInsets = UIEdgeInsets(top: W3WPadding.bold.value + W3WPadding.thin.value, left: 0.0, bottom: 0.0, right: 0.0)
-    
-    // tell searchfield what to do when a user selects an address
-    searchField.onSuggestionSelected = { suggestion in
-      self.userSelected(suggestion: suggestion)
+    // show the voice or text mode
+    if let api = w3w as? What3WordsV3, launchMode == .voice {
+      showVoiceEntryMode(api: api)
+    } else {
+      showTextEntryMode()
     }
     
-    searchField.definesPresentationContext = true
-    searchField.searchBar.sizeToFit()
+    // tell address what to do when a user selects a suggestion
+    addressValidatorViewController.onRowSelected = { [weak self] address, indexPath in
+      self?.userSelected(address: address)
+      if let a = address as? W3WValidatorNodeSuggestion {
+        self?.suggestion = a.suggestion
+      }
+    }
+
+    // when the voice input returns suggestions, do a address search
+    voiceViewController?.onSuggestions = { suggestions in
+      if let suggestion = suggestions.first {
+        self.userSelected(suggestion: suggestion)
+      }
+    }
     
     updateColors()
   }
+    
 
+  
+  /// show the voice entry mode and fall back to text entry if there is no voice capabilities
+  func showVoiceEntryMode(api: What3WordsV3) {
+    if let o = options {
+      voiceViewController?.set(options: o)
+    }
+    
+    // if voice is available this voiceViewController will not be nil
+    if let vc = voiceViewController {
+      navigationController?.setViewControllers([vc], animated: false)
+    
+    // if there is no voice capability the show text
+    } else {
+      showTextEntryMode()
+    }
+  }
+    
+  
+  /// show the text entry mode
+  func showTextEntryMode() {
+    // give the tableview to the searchfield
+    searchField = W3WSearchController(searchResultsController: addressValidatorViewController)
+
+    // settings
+    rootViewController.navigationItem.searchController = searchField
+    searchField.automaticallyShowsCancelButton = false
+    
+    // padding
+    self.additionalSafeAreaInsets = UIEdgeInsets(top: W3WPadding.bold.value + W3WPadding.thin.value, left: 0.0, bottom: 0.0, right: 0.0)
+    
+    // autosuggest called when there is a keystroke
+    searchField.onTextChange = { [weak self] text in
+      if self?.w3w.isPossible3wa(text: text) ?? false {
+        self?.autosuggest.update(text: text, options: self?.options ?? []) { error in
+          self?.addressValidatorViewController.set(items: self?.suggestionsToNodes(suggestions: self?.autosuggest.suggestions)  ?? [])
+        }
+      } else {
+        self?.set(suggestions: [])
+      }
+      
+      return true
+    }
+
+    // settings
+    searchField.definesPresentationContext = true
+    searchField.searchBar.sizeToFit()
+  }
+  
+  
+  /// convert [W3WSuggestion] to [W3WValidatorNode]
+  func suggestionsToNodes(suggestions: [W3WSuggestion]?) -> [W3WValidatorNode] {
+    var nodes = [W3WValidatorNode]()
+    
+    for suggestion in suggestions ?? [] {
+      nodes.append(W3WValidatorNodeSuggestion(suggestion: suggestion))
+    }
+
+    return nodes
+  }
+  
 
   /// make the searchbar become active on launch
   public func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-    self.searchField.isActive = true
+    self.searchField?.isActive = true
     
-//    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-//      self.searchField.searchBar.becomeFirstResponder()
-//    }
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+      self.searchField?.searchBar.becomeFirstResponder()
+    }
   }
 
   
@@ -175,12 +314,18 @@ public class W3WAddressValidatorViewController: UINavigationController, UINaviga
   }
   
   
+  /// called when the user selects an address
   func userSelected(address: W3WValidatorNode) {
 
     // if the user chose an address leaf
     if let a = address as? W3WValidatorNodeLeaf {
       if let s = suggestion {
-        self.showSummaryView(suggestion: s, address: a)
+        if skipConfirmStep {
+            self.userChose(address: a)
+        } else {
+          self.showSummaryView(suggestion: s, address: a)
+        }
+        
       } else {
         self.dealWithErrorIfAny(error: W3WAddressValidatorComponentError.internalInconsistancy)
       }
@@ -195,7 +340,7 @@ public class W3WAddressValidatorViewController: UINavigationController, UINaviga
           service.search(near: words) { addresses, error in
             self.dealWithErrorIfAny(error: error)
             nextView.set(items: addresses)
-            //self.showNextView(addresses: addresses)
+            self.setTitle(text: words, vc: nextView)
           }
         }
         
@@ -204,13 +349,22 @@ public class W3WAddressValidatorViewController: UINavigationController, UINaviga
         service.list(from: a) { addresses, error in
           self.dealWithErrorIfAny(error: error)
           nextView.set(items: addresses)
-          //self.showNextView(addresses: addresses)
+          self.setTitle(text: a.name, vc: nextView)
         }
       }
     }
   }
   
+
+  // set the view controller title on the main thread
+  func setTitle(text: String, vc: UIViewController) {
+    DispatchQueue.main.async {
+      vc.title = text
+    }
+  }
   
+  
+  // called when the user chooses an address
   func userChose(address: W3WValidatorNodeLeaf) {
     service.info(for: address) { address, error in
       self.dealWithErrorIfAny(error: error)
@@ -226,6 +380,7 @@ public class W3WAddressValidatorViewController: UINavigationController, UINaviga
   // MARK: Show Views
   
 
+  /// makes a new address view and returns it
   func showAndReturnAddressView() -> W3WAddressValidatorTableViewController {
     let addressValidatorViewController = W3WAddressValidatorTableViewController()
     
@@ -235,7 +390,6 @@ public class W3WAddressValidatorViewController: UINavigationController, UINaviga
     }
     
     DispatchQueue.main.async {
-      print("PUSHING CONTROLLER")
       self.pushViewController(addressValidatorViewController, animated: true)
     }
     
@@ -243,6 +397,7 @@ public class W3WAddressValidatorViewController: UINavigationController, UINaviga
   }
   
   
+  /// given some nodes show another view of them
   func showNextView(addresses: [W3WValidatorNode]) {
     DispatchQueue.main.async {
 
@@ -265,8 +420,9 @@ public class W3WAddressValidatorViewController: UINavigationController, UINaviga
   }
   
   
+  /// given an address leaf node, show a summary
   func showSummaryView(suggestion: W3WSuggestion, address: W3WValidatorNodeLeaf) {
-    let vc = W3WAddressValidatorSummayView(suggestion: suggestion, address: address)
+    let vc = W3WAddressValidatorSummayViewController(suggestion: suggestion, address: address)
     
     vc.onConfirm = { address in
       self.userChose(address: address)
@@ -283,11 +439,10 @@ public class W3WAddressValidatorViewController: UINavigationController, UINaviga
     view.setNeedsDisplay()
   }
   
-  
+
+  /// does what it says on the tin
   func updateColors() {
     rootViewController.view.layer.backgroundColor = colors.background.current.cgColor
-    //navigationController?.view.backgroundColor = colors.background.current.uiColor
-    //navigationController?.navigationBar.backgroundColor = colors.background.current.uiColor
     view.backgroundColor = colors.background.current.uiColor
     view.layer.backgroundColor = colors.background.current.cgColor
     view.layer.borderColor = colors.background.current.cgColor
@@ -309,6 +464,21 @@ public class W3WAddressValidatorViewController: UINavigationController, UINaviga
       onError(e)
     }
   }
+  
+  
+  // constants
+  let micSize = CGFloat(256.0)
+  let logoWidth = CGFloat(64.0)
+
+  
+  // functions for the view placements
+  func titleFrame()       -> CGRect { return CGRect(x: W3WPadding.heavy.value, y: microphoneFrame().minY - 32.0 - W3WPadding.heavy.value, width: view.frame.width - W3WPadding.heavy.value * 2.0, height: 32.0) }
+  func microphoneFrame()   -> CGRect { return CGRect(x: (view.frame.width - micSize) / 2.0, y: view.center.y - micSize / 2.0, width: micSize, height: micSize) }
+  func descriptionFrame()   -> CGRect { return CGRect(x: W3WPadding.heavy.value, y: microphoneFrame().maxY + W3WPadding.heavy.value, width: view.frame.width - W3WPadding.heavy.value * 2.0, height: 32.0) }
+  func logoFrame()           -> CGRect { return CGRect(x: view.center.x - logoWidth / 2.0, y: view.frame.height - logoWidth / 2.0 - self.view.safeAreaInsets.bottom, width: logoWidth, height: 11.0) }
+  func errorFrame()           -> CGRect { return CGRect(x: W3WPadding.heavy.value, y: microphoneFrame().minY - 56.0 - W3WPadding.heavy.value, width: view.frame.width - W3WPadding.heavy.value * 2.0, height: 32.0) }
+  func errorDescriptionFrame() -> CGRect { return CGRect(x: W3WPadding.heavy.value, y: microphoneFrame().minY - 52.0, width: view.frame.width - W3WPadding.heavy.value * 2.0, height: 64.0) }
+
   
 }
 

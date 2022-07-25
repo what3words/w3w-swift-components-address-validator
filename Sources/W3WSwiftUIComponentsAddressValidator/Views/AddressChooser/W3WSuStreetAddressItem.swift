@@ -11,11 +11,14 @@ import W3WSwiftDesign
 import W3WSwiftAddressValidators
 
 
+/// a row showing a possible street address selection
 public struct W3WSuStreetAddressItem: View {
   
   @ObservedObject var model: W3WStreetAddressModel
   var address: W3WValidatorNode
   let colors: W3WColorSet
+  
+  var showCounts = false
   
   public init(model: W3WStreetAddressModel, address: W3WValidatorNode, colors: W3WColorSet) {
     self.model    = model
@@ -76,7 +79,7 @@ public struct W3WSuStreetAddressItem: View {
       }
       
       if let a = address as? W3WValidatorNodeList {
-        if let childCount = (a.subItemCount ?? a.children?.count),  model.service.supportsSubitemCounts {
+        if showCounts, let childCount = (a.subItemCount ?? a.children?.count),  model.service.supportsSubitemCounts {
           if childCount > 0 {
             W3WSubResultCountIndicator(display: String(childCount), color: colors.highlight.current.suColor)
           }

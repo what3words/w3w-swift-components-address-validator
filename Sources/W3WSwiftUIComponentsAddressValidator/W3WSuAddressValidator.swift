@@ -30,18 +30,30 @@ public struct W3WSuAddressValidator: View {
   var onAddressSelected: (W3WStreetAddressProtocol?) -> ()
 
 
+  /// initialize with a address validator service
+  /// - Parameters:
+  ///     - model: the local data model
+  ///     - coordinates: a nearby `focus` location to hlep autosuggest
+  ///     - colors: A colors struct specifying the colours to use (optional)
+  ///     - onAddressSelected: callback closure for when the user chooses an address
   public init(model: W3WStreetAddressModel, coordinates: CLLocationCoordinate2D? = nil, colors: W3WSuAddressValidatorColors = W3WSuAddressValidatorColors(), onAddressSelected: @escaping (W3WStreetAddressProtocol?) -> ()) {
     model.set(focus: coordinates)
    
     self.colors = colors
     self.onAddressSelected = onAddressSelected
-    //= { node in onAddressSelected(controller.onAddressChosen(node: node)) }
     self.model = model
     
     controller = W3WStreetAddressController(model: model)
   }
   
   
+  /// initialize with a Swift Complete service
+  /// - Parameters:
+  ///     - w3wApiKey: your what3words API key
+  ///     - swiftCompleteApiKey: your Swift Complete API key
+  ///     - coordinates: a nearby `focus` location to hlep autosuggest
+  ///     - colors: A colors struct specifying the colours to use (optional)
+  ///     - onAddressSelected: callback closure for when the user chooses an address
   public init(w3wApiKey: String, swiftCompleteApiKey: String, coordinates: CLLocationCoordinate2D? = nil, colors: W3WSuAddressValidatorColors = W3WSuAddressValidatorColors(), onAddressSelected: @escaping (W3WStreetAddressProtocol?) -> ()) {
     let model = W3WStreetAddressModel(w3wApiKey: w3wApiKey, swiftCompleteApiKey: swiftCompleteApiKey, focus: coordinates)
     model.set(focus: coordinates)
@@ -54,6 +66,13 @@ public struct W3WSuAddressValidator: View {
   }
   
   
+  /// initialize with a Swift Complete service
+  /// - Parameters:
+  ///     - w3wApiKey: your what3words API key
+  ///     - data8ApiKey: your Data8 API key
+  ///     - coordinates: a nearby `focus` location to hlep autosuggest
+  ///     - colors: A colors struct specifying the colours to use (optional)
+  ///     - onAddressSelected: callback closure for when the user chooses an address
   public init(w3wApiKey: String, data8ApiKey: String, coordinates: CLLocationCoordinate2D? = nil, colors: W3WSuAddressValidatorColors = W3WSuAddressValidatorColors(), onAddressSelected: @escaping (W3WStreetAddressProtocol?) -> ()) {
     let model = W3WStreetAddressModel(w3wApiKey: w3wApiKey, data8ApiKey: data8ApiKey, focus: coordinates)
     model.set(focus: coordinates)
@@ -66,6 +85,13 @@ public struct W3WSuAddressValidator: View {
   }
 
   
+  /// initialize with a Swift Complete service
+  /// - Parameters:
+  ///     - w3wApiKey: your what3words API key
+  ///     - lookupService: The address validarot service taht conforms to W3WAddressValidatorProtocol
+  ///     - coordinates: a nearby `focus` location to hlep autosuggest
+  ///     - colors: A colors struct specifying the colours to use (optional)
+  ///     - onAddressSelected: callback closure for when the user chooses an address
   public init(w3wApiKey: String, lookupService: W3WAddressValidatorProtocol, coordinates: CLLocationCoordinate2D? = nil, colors: W3WSuAddressValidatorColors = W3WSuAddressValidatorColors(), onAddressSelected: @escaping (W3WStreetAddressProtocol?) -> ()) {
     let model = W3WStreetAddressModel(w3wApiKey: w3wApiKey, service: lookupService, focus: coordinates)
     model.set(focus: coordinates)
@@ -78,6 +104,13 @@ public struct W3WSuAddressValidator: View {
   }
 
   
+  /// initialize with a Swift Complete service
+  /// - Parameters:
+  ///     - w3wApiKey: your what3words API key
+  ///     - loqateApiKey: your Loqate API key
+  ///     - coordinates: a nearby `focus` location to hlep autosuggest
+  ///     - colors: A colors struct specifying the colours to use (optional)
+  ///     - onAddressSelected: callback closure for when the user chooses an address
   public init(w3wApiKey: String, loqateApiKey: String, coordinates: CLLocationCoordinate2D? = nil, colors: W3WSuAddressValidatorColors = W3WSuAddressValidatorColors(), onAddressSelected: @escaping (W3WStreetAddressProtocol?) -> ()) {
     let model = W3WStreetAddressModel(w3wApiKey: w3wApiKey, loqateApiKey: loqateApiKey, focus: coordinates)
     model.set(focus: coordinates)

@@ -13,6 +13,7 @@ import W3WSwiftUIInterfaceElements
 import UIKit
 
 
+/// hold colours for the component
 public class W3WSuAddressValidatorColors {
   
   /// colors for most elements

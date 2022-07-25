@@ -9,6 +9,7 @@ import SwiftUI
 import W3WSwiftUIInterfaceElements
 
 
+/// text field for input
 public struct W3WSuTextFieldWithButtons: View {
 
   let colors: W3WSuAddressValidatorColors
@@ -39,21 +40,5 @@ public struct W3WSuTextFieldWithButtons: View {
       }
     }
   }
-      //.focused($emailFieldIsFocused)
-//      .onSubmit {
-//        //validate(name: username)
-//      }
-//      .textInputAutocapitalization(.never)
-//      .disableAutocorrection(true)
-//      .border(.secondary)
-    
-//    Text(words)
-    //.foregroundColor(emailFieldIsFocused ? .red : .blue)
-//  }
 }
 
-//struct W3WTextFieldWatchOS_Previews: PreviewProvider {
-//    static var previews: some View {
-//      W3WTextFieldWatchOS()
-//    }
-//}

@@ -37,8 +37,44 @@ public class W3WAddressValidatorTableViewController: W3WTableViewController<W3WV
     registerSuggestionCell()
   }
   
+  
+  /// sets up the UI
+  override open func viewDidLoad() {
+    super.viewDidLoad()
+    
+    //tableView.separatorInset = UIEdgeInsets(top: 0.0, left: W3WPadding.bold.value, bottom: 0.0, right: W3WPadding.bold.value)
+    tableView.separatorStyle = .none
+  }
 
-  // MARK: cellForRowAt
+  
+  // MARK: tableView
+  
+  
+  override public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    var v:UILabel? = nil
+    
+    if let node = getItem(at: IndexPath(row: 0, section: 0)) {
+      if !(node is W3WValidatorNodeSuggestion) {
+        v = W3WWordsView(words: node.words ?? "", font: .systemFont(ofSize: 17.0, weight: .bold))
+      }
+    }
+
+    return v
+  }
+  
+  
+  override public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    var height:CGFloat = 0.0
+    
+    if let node = getItem(at: IndexPath(row: 0, section: 0)) {
+      if !(node is W3WValidatorNodeSuggestion) {
+        height = 44.0
+      }
+    }
+    
+    return height
+  }
+  
   
   /// make a table view cell for a new row
   public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -67,6 +103,7 @@ public class W3WAddressValidatorTableViewController: W3WTableViewController<W3WV
   // MARK: Address cells
   
   
+  /// depending on the type of node passed in, present a different kind of cell
   func getAddressCell(node: W3WValidatorNode, indexPath: IndexPath) -> UITableViewCell {
     let cell = getReusableCell(indexPath: indexPath)
     
@@ -91,17 +128,28 @@ public class W3WAddressValidatorTableViewController: W3WTableViewController<W3WV
   let suggestionCellIdentifier = String(describing: W3WSuggestionsTableViewCell.self)
   
   
+  // register a second tpye of cell for suggestions
   func registerSuggestionCell() {
     self.tableView.register(W3WSuggestionsTableViewCell.self, forCellReuseIdentifier: suggestionCellIdentifier)
   }
   
   
+  // make a suggestion cell
   func getSuggestionCell(node: W3WValidatorNodeSuggestion, indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: suggestionCellIdentifier, for: indexPath) as! W3WSuggestionsTableViewCell
     cell.set(suggestion: node.suggestion)
     return cell
   }
   
+  
+  // MARK: UITableViewController overrides
+  
+  
+  public override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    tableView.frame = CGRect(x: tableView.frame.origin.x, y: tableView.frame.origin.y, width: tableView.frame.size.width, height: parent?.view.frame.height ?? 128.0)
+  }
+
   
 }
 

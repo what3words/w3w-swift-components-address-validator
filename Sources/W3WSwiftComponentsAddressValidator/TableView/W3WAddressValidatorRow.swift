@@ -37,9 +37,15 @@ public class W3WAddressValidatorRow: UITableViewCell {
   /// count indicator label
   var countLabel: UILabel!
   
+  /// show or don't show count in the row
+  var showCount = false
+  
   /// colors to use
   var colors = W3WColorSet.lightDarkMode
   
+  /// separator line, to replace the built in one, as we don't one one at the top of the view
+  let separatorLine = UIView(frame: .w3wWhatever)
+
   
   // MARK: Init
   
@@ -66,6 +72,9 @@ public class W3WAddressValidatorRow: UITableViewCell {
     countLabel.layer.cornerRadius = countSize / 2.0
     addSubview(countLabel)
     
+    separatorLine.backgroundColor = W3WColor.systemGroupedBackground.current.uiColor
+    addSubview(separatorLine)
+    
     updateColours()
   }
 
@@ -77,6 +86,8 @@ public class W3WAddressValidatorRow: UITableViewCell {
   
   // MARK: Accessors
   
+  
+  /// sets the row view to the values provided
   public func set(title: String?, subTitle: String?, subItemCount: Int? = nil, disclosureIndicator: Bool = false) {
     self.title = title
     self.subTitle = subTitle
@@ -87,16 +98,18 @@ public class W3WAddressValidatorRow: UITableViewCell {
     self.detailTextLabel?.text = subTitle
     self.imageView?.image = disclosureIndicator ? W3WIcons.pinMulti : W3WIcons.pin
     //UIImage(named: disclosureIndicator ? "addressValidationPinMultiBlack" : "addressValidationPinBlack")
-    
+        
     if disclosureIndicator {
       accessoryType = .disclosureIndicator
     }
     
-    if let count = subItemCount {
-      if count > 0 {
-        countLabel.isHidden = false
-        countLabel.text = String(count)
-        return
+    if showCount {
+      if let count = subItemCount {
+        if count > 0 {
+          countLabel.isHidden = false
+          countLabel.text = String(count)
+          return
+        }
       }
     }
 
@@ -107,11 +120,13 @@ public class W3WAddressValidatorRow: UITableViewCell {
   // MARK: Color modes
   
   
+  /// handle switching from light mode to dark mode and vice versa
   public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
     updateColours()
   }
   
 
+  /// updates the colours of all elements
   func updateColours() {
     self.textLabel?.textColor = colors.foreground.current.uiColor
     self.detailTextLabel?.textColor = colors.secondary.current.uiColor
@@ -123,6 +138,8 @@ public class W3WAddressValidatorRow: UITableViewCell {
   
   // MARK: Layout
   
+  
+  /// puts all sub views into the right place
   public override func layoutSubviews() {
     super.layoutSubviews()
     
@@ -133,14 +150,16 @@ public class W3WAddressValidatorRow: UITableViewCell {
     if let f = self.textLabel?.frame, let imageFrame = imageView?.frame {
       let newX = imageFrame.origin.x + iconSize + W3WPadding.medium.value
       //self.textLabel?.frame = CGRect(x: newX, y: f.origin.y, width: f.width, height: f.height)
-      self.textLabel?.frame = CGRect(x: newX, y: f.origin.y, width: frame.width - newX, height: f.height)
+      self.textLabel?.frame = CGRect(x: newX, y: f.origin.y, width: frame.width - newX * 1.62, height: f.height)
     }
     
     if let f = self.detailTextLabel?.frame, let imageFrame = imageView?.frame {
       let newX = imageFrame.origin.x + iconSize + W3WPadding.medium.value
       //self.detailTextLabel?.frame = CGRect(x: newX, y: f.origin.y, width: f.width, height: f.height)
-      self.detailTextLabel?.frame = CGRect(x: newX, y: f.origin.y, width: frame.width - newX, height: f.height)
+      self.detailTextLabel?.frame = CGRect(x: newX, y: f.origin.y, width: frame.width - newX * 1.62, height: f.height)
     }
+    
+    separatorLine.frame = CGRect(x: W3WPadding.bold.value, y: frame.height - 1.0, width: frame.width - W3WPadding.bold.value * 2.0, height: 1.0)
     
     countLabel.frame = CGRect(
       x: frame.size.width - W3WPadding.medium.value - countSize - (disclosureIndicator ? countSize : 0.0),

@@ -10,7 +10,7 @@ import W3WSwiftApi
 import W3WSwiftAddressValidators
 
 
-
+/// Error type
 public enum W3WAddressValidatorComponentError: Error, CustomStringConvertible {
   case unknown
   case internalInconsistancy
