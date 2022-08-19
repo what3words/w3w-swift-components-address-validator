@@ -56,8 +56,11 @@ public class W3WAddressValidatorSummayViewController: W3WViewController {
   override public func viewDidLoad() {
     super.viewDidLoad()
 
+    title = "Summary"
+    
     // add the summry sub view
-    view.addSubview(addressSummary)
+    add(view: addressSummary, frame: getAddressFrame)
+    //view.addSubview(addressSummary)
     
     // make and add a confirm button
     let confirmButton = UIBarButtonItem(title: "Confirm", style: .done, target: self, action: #selector(buttonPressed))
@@ -91,7 +94,7 @@ public class W3WAddressValidatorSummayViewController: W3WViewController {
       insets = view.safeAreaInsets
     }
 
-    return CGRect(x: W3WPadding.heavy.value + insets.left, y: W3WPadding.heavy.value + insets.top, width: view.frame.width - W3WPadding.heavy.value * 2.0, height: 113.0)
+    return CGRect(x: W3WPadding.heavy.value + insets.left, y: W3WPadding.heavy.value + insets.top, width: view.frame.width - W3WPadding.heavy.value * 2.0 - insets.left, height: 113.0)
   }
   
   

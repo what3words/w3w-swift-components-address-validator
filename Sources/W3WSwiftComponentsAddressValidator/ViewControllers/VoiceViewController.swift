@@ -16,11 +16,16 @@ import W3WSwiftComponents
 
 class W3WVoiceViewController: W3WViewController, W3WOptionAcceptorProtocol {
 
-  // called when a suggestion is ready
+  /// called when a suggestion is ready
   var onSuggestions: ([W3WSuggestion]) -> () = { _ in }
   
+  /// the voice api
   var api: What3WordsV3!
   
+  /// autosuggest options to use
+  var options: [W3WOption]? = nil
+  
+  /// the microphone view
   var microphoneView: W3WVoiceView!
 
   // sub views
@@ -62,7 +67,8 @@ class W3WVoiceViewController: W3WViewController, W3WOptionAcceptorProtocol {
   
   // set options to use for the autosuggest
   func set(options: [W3WOption]) {
-    microphoneView.set(options: options)
+    self.options = options
+    microphoneView?.set(options: options)
   }
   
 
@@ -72,6 +78,11 @@ class W3WVoiceViewController: W3WViewController, W3WOptionAcceptorProtocol {
 
     // microphone
     microphoneView = W3WVoiceView(api: api)
+
+    if let o = self.options {
+      microphoneView.options = o
+    }
+
     add(view: microphoneView, frame: microphoneFrame)
 
     // the title

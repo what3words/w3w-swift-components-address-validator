@@ -42,6 +42,8 @@ public class W3WAddressValidatorTableViewController: W3WTableViewController<W3WV
   override open func viewDidLoad() {
     super.viewDidLoad()
     
+    view.backgroundColor = colors.background.current.uiColor
+    
     //tableView.separatorInset = UIEdgeInsets(top: 0.0, left: W3WPadding.bold.value, bottom: 0.0, right: W3WPadding.bold.value)
     tableView.separatorStyle = .none
   }
@@ -84,7 +86,7 @@ public class W3WAddressValidatorTableViewController: W3WTableViewController<W3WV
       if let n = node as? W3WValidatorNodeSuggestion {
         cell = getSuggestionCell(node: n, indexPath: indexPath)
         if let sc = cell as? W3WSuggestionsTableViewCell {
-          sc.colors = colors
+          sc.colors = .darkBlueGrayRed //colors
           sc.updateColors()
         }
         

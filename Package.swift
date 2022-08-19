@@ -14,7 +14,7 @@ let package = Package(
       .library(name: "W3WSwiftUIComponentsAddressValidator", targets: ["W3WSwiftUIComponentsAddressValidator"]),
     ],
     dependencies: [
-      .package(url: "git@github.com:what3words/w3w-swift-address-validators.git", .branch("main")),
+      .package(url: "git@github.com:what3words/w3w-swift-address-validators.git", "0.1.0"..<"0.9.0"),
       .package(url: "https://github.com/what3words/w3w-swift-wrapper.git", "3.7.2"..<"4.0.0"),
       .package(url: "https://github.com/what3words/w3w-swift-components.git", "2.3.0"..<"3.0.0"),
       .package(url: "https://github.com/what3words/w3w-swift-interface-elements.git", .branch("main")),
