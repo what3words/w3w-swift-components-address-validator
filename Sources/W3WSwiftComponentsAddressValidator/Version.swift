@@ -17,7 +17,7 @@ import W3WSwiftApi
 
 extension W3WSettings {
   
-  static let W3WSwiftComponentsAddressValidatorVersion = "v0.1.1"
+  static let W3WSwiftComponentsAddressValidatorVersion = "v0.1.2"
   
   static let addresssValidatorHttpHeaderKey = "X-W3W-ADV-Component"
    
