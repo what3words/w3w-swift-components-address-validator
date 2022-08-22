@@ -19,6 +19,9 @@ class W3WVoiceViewController: W3WViewController, W3WOptionAcceptorProtocol {
   /// called when a suggestion is ready
   var onSuggestions: ([W3WSuggestion]) -> () = { _ in }
   
+  /// closure for error notifications
+  var onError: (W3WVoiceError) -> () = { _ in }
+  
   /// the voice api
   var api: What3WordsV3!
   
@@ -100,6 +103,8 @@ class W3WVoiceViewController: W3WViewController, W3WOptionAcceptorProtocol {
     errorDescriptionLabel.font = UIFont.systemFont(ofSize: 17.0, weight: .light)
     errorDescriptionLabel.textColor = W3WCoreColor.grey38.uiColor
     errorDescriptionLabel.numberOfLines = 2
+    errorDescriptionLabel.minimumScaleFactor = 0.5
+    errorDescriptionLabel.adjustsFontSizeToFitWidth = true
     add(view: errorDescriptionLabel, frame: errorDescriptionFrame)
 
     // add the logo
@@ -111,15 +116,16 @@ class W3WVoiceViewController: W3WViewController, W3WOptionAcceptorProtocol {
     }
     
     // when suggestions come in, deal with them
-    microphoneView.onVoiceSuggestions = { suggestions, error in
+    microphoneView.onVoiceSuggestions = { [weak self] suggestions, error in
       if let e = error {
-        print(e)
-      
+        self?.microphoneView.set(state: .error) // consider no suggestions an error state
+        self?.onError(e)
+
       } else if suggestions?.count ?? 0 == 0 {
-        self.microphoneView.set(state: .error) // consider no suggestions an error state
+        self?.microphoneView.set(state: .error) // consider no suggestions an error state
         
       } else {
-        self.onSuggestions(suggestions ?? [])
+        self?.onSuggestions(suggestions ?? [])
       }
     }
     

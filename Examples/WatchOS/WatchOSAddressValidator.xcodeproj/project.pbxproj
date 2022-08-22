@@ -1,0 +1,636 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		018D2C8128B394F4005FEAE4 /* W3WSwiftUIComponentsAddressValidator in Frameworks */ = {isa = PBXBuildFile; productRef = 018D2C8028B394F4005FEAE4 /* W3WSwiftUIComponentsAddressValidator */; };
+		01C6601F282296BB00A8AE56 /* WatchOSAddressValidator WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 01C6601E282296BB00A8AE56 /* WatchOSAddressValidator WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		01C66024282296BD00A8AE56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01C66023282296BD00A8AE56 /* Assets.xcassets */; };
+		01C6602A282296BE00A8AE56 /* WatchOSAddressValidator WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 01C66029282296BE00A8AE56 /* WatchOSAddressValidator WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		01C6602F282296BE00A8AE56 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C6602E282296BE00A8AE56 /* ContentView.swift */; };
+		01C66031282296BE00A8AE56 /* WatchOSAddressValidatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C66030282296BE00A8AE56 /* WatchOSAddressValidatorApp.swift */; };
+		01C66033282296BE00A8AE56 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C66032282296BE00A8AE56 /* ComplicationController.swift */; };
+		01C66035282296BF00A8AE56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01C66034282296BF00A8AE56 /* Assets.xcassets */; };
+		01C66038282296BF00A8AE56 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01C66037282296BF00A8AE56 /* Preview Assets.xcassets */; };
+		01C6604B282297C300A8AE56 /* Gps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C6604A282297C300A8AE56 /* Gps.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		01C66020282296BB00A8AE56 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01C66014282296BA00A8AE56 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 01C6601D282296BB00A8AE56;
+			remoteInfo = "WatchOSAddressValidator WatchKit App";
+		};
+		01C6602B282296BE00A8AE56 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01C66014282296BA00A8AE56 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 01C66028282296BE00A8AE56;
+			remoteInfo = "WatchOSAddressValidator WatchKit Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		01C6603F282296BF00A8AE56 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				01C6602A282296BE00A8AE56 /* WatchOSAddressValidator WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		01C66043282296BF00A8AE56 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				01C6601F282296BB00A8AE56 /* WatchOSAddressValidator WatchKit App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		01C6601A282296BA00A8AE56 /* WatchOSAddressValidator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchOSAddressValidator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		01C6601E282296BB00A8AE56 /* WatchOSAddressValidator WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WatchOSAddressValidator WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		01C66023282296BD00A8AE56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		01C66029282296BE00A8AE56 /* WatchOSAddressValidator WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "WatchOSAddressValidator WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		01C6602E282296BE00A8AE56 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		01C66030282296BE00A8AE56 /* WatchOSAddressValidatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchOSAddressValidatorApp.swift; sourceTree = "<group>"; };
+		01C66032282296BE00A8AE56 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		01C66034282296BF00A8AE56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		01C66037282296BF00A8AE56 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		01C66039282296BF00A8AE56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01C6604A282297C300A8AE56 /* Gps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gps.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		01C66026282296BE00A8AE56 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				018D2C8128B394F4005FEAE4 /* W3WSwiftUIComponentsAddressValidator in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		01C66013282296BA00A8AE56 = {
+			isa = PBXGroup;
+			children = (
+				01C660472822970A00A8AE56 /* Packages */,
+				01C66022282296BB00A8AE56 /* WatchOSAddressValidator WatchKit App */,
+				01C6602D282296BE00A8AE56 /* WatchOSAddressValidator WatchKit Extension */,
+				01C6601B282296BA00A8AE56 /* Products */,
+				01C6604C282297EF00A8AE56 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		01C6601B282296BA00A8AE56 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				01C6601A282296BA00A8AE56 /* WatchOSAddressValidator.app */,
+				01C6601E282296BB00A8AE56 /* WatchOSAddressValidator WatchKit App.app */,
+				01C66029282296BE00A8AE56 /* WatchOSAddressValidator WatchKit Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		01C66022282296BB00A8AE56 /* WatchOSAddressValidator WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				01C66023282296BD00A8AE56 /* Assets.xcassets */,
+			);
+			path = "WatchOSAddressValidator WatchKit App";
+			sourceTree = "<group>";
+		};
+		01C6602D282296BE00A8AE56 /* WatchOSAddressValidator WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				01C6602E282296BE00A8AE56 /* ContentView.swift */,
+				01C66030282296BE00A8AE56 /* WatchOSAddressValidatorApp.swift */,
+				01C66032282296BE00A8AE56 /* ComplicationController.swift */,
+				01C6604A282297C300A8AE56 /* Gps.swift */,
+				01C66034282296BF00A8AE56 /* Assets.xcassets */,
+				01C66039282296BF00A8AE56 /* Info.plist */,
+				01C66036282296BF00A8AE56 /* Preview Content */,
+			);
+			path = "WatchOSAddressValidator WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		01C66036282296BF00A8AE56 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				01C66037282296BF00A8AE56 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		01C660472822970A00A8AE56 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		01C6604C282297EF00A8AE56 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		01C66019282296BA00A8AE56 /* WatchOSAddressValidator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 01C66044282296BF00A8AE56 /* Build configuration list for PBXNativeTarget "WatchOSAddressValidator" */;
+			buildPhases = (
+				01C66018282296BA00A8AE56 /* Resources */,
+				01C66043282296BF00A8AE56 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				01C66021282296BB00A8AE56 /* PBXTargetDependency */,
+			);
+			name = WatchOSAddressValidator;
+			packageProductDependencies = (
+				018D2C7F28B394E2005FEAE4 /* W3WSwiftUIComponentsAddressValidator */,
+			);
+			productName = WatchOSAddressValidator;
+			productReference = 01C6601A282296BA00A8AE56 /* WatchOSAddressValidator.app */;
+			productType = "com.apple.product-type.application.watchapp2-container";
+		};
+		01C6601D282296BB00A8AE56 /* WatchOSAddressValidator WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 01C66040282296BF00A8AE56 /* Build configuration list for PBXNativeTarget "WatchOSAddressValidator WatchKit App" */;
+			buildPhases = (
+				01C6601C282296BB00A8AE56 /* Resources */,
+				01C6603F282296BF00A8AE56 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				01C6602C282296BE00A8AE56 /* PBXTargetDependency */,
+			);
+			name = "WatchOSAddressValidator WatchKit App";
+			productName = "WatchOSAddressValidator WatchKit App";
+			productReference = 01C6601E282296BB00A8AE56 /* WatchOSAddressValidator WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		01C66028282296BE00A8AE56 /* WatchOSAddressValidator WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 01C6603C282296BF00A8AE56 /* Build configuration list for PBXNativeTarget "WatchOSAddressValidator WatchKit Extension" */;
+			buildPhases = (
+				01C66025282296BE00A8AE56 /* Sources */,
+				01C66026282296BE00A8AE56 /* Frameworks */,
+				01C66027282296BE00A8AE56 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "WatchOSAddressValidator WatchKit Extension";
+			packageProductDependencies = (
+				018D2C8028B394F4005FEAE4 /* W3WSwiftUIComponentsAddressValidator */,
+			);
+			productName = "WatchOSAddressValidator WatchKit Extension";
+			productReference = 01C66029282296BE00A8AE56 /* WatchOSAddressValidator WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		01C66014282296BA00A8AE56 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					01C66019282296BA00A8AE56 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					01C6601D282296BB00A8AE56 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					01C66028282296BE00A8AE56 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 01C66017282296BA00A8AE56 /* Build configuration list for PBXProject "WatchOSAddressValidator" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 01C66013282296BA00A8AE56;
+			packageReferences = (
+				018D2C7E28B394E2005FEAE4 /* XCRemoteSwiftPackageReference "w3w-swift-components-address-validator" */,
+			);
+			productRefGroup = 01C6601B282296BA00A8AE56 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				01C66019282296BA00A8AE56 /* WatchOSAddressValidator */,
+				01C6601D282296BB00A8AE56 /* WatchOSAddressValidator WatchKit App */,
+				01C66028282296BE00A8AE56 /* WatchOSAddressValidator WatchKit Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		01C66018282296BA00A8AE56 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		01C6601C282296BB00A8AE56 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01C66024282296BD00A8AE56 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		01C66027282296BE00A8AE56 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01C66038282296BF00A8AE56 /* Preview Assets.xcassets in Resources */,
+				01C66035282296BF00A8AE56 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		01C66025282296BE00A8AE56 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01C66031282296BE00A8AE56 /* WatchOSAddressValidatorApp.swift in Sources */,
+				01C6602F282296BE00A8AE56 /* ContentView.swift in Sources */,
+				01C6604B282297C300A8AE56 /* Gps.swift in Sources */,
+				01C66033282296BE00A8AE56 /* ComplicationController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		01C66021282296BB00A8AE56 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 01C6601D282296BB00A8AE56 /* WatchOSAddressValidator WatchKit App */;
+			targetProxy = 01C66020282296BB00A8AE56 /* PBXContainerItemProxy */;
+		};
+		01C6602C282296BE00A8AE56 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 01C66028282296BE00A8AE56 /* WatchOSAddressValidator WatchKit Extension */;
+			targetProxy = 01C6602B282296BE00A8AE56 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		01C6603A282296BF00A8AE56 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		01C6603B282296BF00A8AE56 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		01C6603D282296BF00A8AE56 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"WatchOSAddressValidator WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = YC9564MTQY;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "WatchOSAddressValidator WatchKit Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "WatchOSAddressValidator WatchKit Extension";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = WatchOSAddressValidator_WatchKit_Extension.ComplicationController;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To help geocoding accuracy";
+				INFOPLIST_KEY_WKWatchOnly = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.what3words.WatchOSAddressValidator.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.3;
+			};
+			name = Debug;
+		};
+		01C6603E282296BF00A8AE56 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"WatchOSAddressValidator WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = YC9564MTQY;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "WatchOSAddressValidator WatchKit Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "WatchOSAddressValidator WatchKit Extension";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = WatchOSAddressValidator_WatchKit_Extension.ComplicationController;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To help geocoding accuracy";
+				INFOPLIST_KEY_WKWatchOnly = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.what3words.WatchOSAddressValidator.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.3;
+			};
+			name = Release;
+		};
+		01C66041282296BF00A8AE56 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YC9564MTQY;
+				GENERATE_INFOPLIST_FILE = YES;
+				IBSC_MODULE = WatchOSAddressValidator_WatchKit_Extension;
+				INFOPLIST_KEY_CFBundleDisplayName = "WatchOSAddressValidator WatchKit App";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.what3words.WatchOSAddressValidator.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.3;
+			};
+			name = Debug;
+		};
+		01C66042282296BF00A8AE56 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YC9564MTQY;
+				GENERATE_INFOPLIST_FILE = YES;
+				IBSC_MODULE = WatchOSAddressValidator_WatchKit_Extension;
+				INFOPLIST_KEY_CFBundleDisplayName = "WatchOSAddressValidator WatchKit App";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.what3words.WatchOSAddressValidator.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.3;
+			};
+			name = Release;
+		};
+		01C66045282296BF00A8AE56 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YC9564MTQY;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.what3words.WatchOSAddressValidator;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		01C66046282296BF00A8AE56 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YC9564MTQY;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.what3words.WatchOSAddressValidator;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		01C66017282296BA00A8AE56 /* Build configuration list for PBXProject "WatchOSAddressValidator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01C6603A282296BF00A8AE56 /* Debug */,
+				01C6603B282296BF00A8AE56 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		01C6603C282296BF00A8AE56 /* Build configuration list for PBXNativeTarget "WatchOSAddressValidator WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01C6603D282296BF00A8AE56 /* Debug */,
+				01C6603E282296BF00A8AE56 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		01C66040282296BF00A8AE56 /* Build configuration list for PBXNativeTarget "WatchOSAddressValidator WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01C66041282296BF00A8AE56 /* Debug */,
+				01C66042282296BF00A8AE56 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		01C66044282296BF00A8AE56 /* Build configuration list for PBXNativeTarget "WatchOSAddressValidator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01C66045282296BF00A8AE56 /* Debug */,
+				01C66046282296BF00A8AE56 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		018D2C7E28B394E2005FEAE4 /* XCRemoteSwiftPackageReference "w3w-swift-components-address-validator" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:what3words/w3w-swift-components-address-validator.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		018D2C7F28B394E2005FEAE4 /* W3WSwiftUIComponentsAddressValidator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 018D2C7E28B394E2005FEAE4 /* XCRemoteSwiftPackageReference "w3w-swift-components-address-validator" */;
+			productName = W3WSwiftUIComponentsAddressValidator;
+		};
+		018D2C8028B394F4005FEAE4 /* W3WSwiftUIComponentsAddressValidator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 018D2C7E28B394E2005FEAE4 /* XCRemoteSwiftPackageReference "w3w-swift-components-address-validator" */;
+			productName = W3WSwiftUIComponentsAddressValidator;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 01C66014282296BA00A8AE56 /* Project object */;
+}

@@ -62,7 +62,7 @@ open class W3WAddressValidatorViewController: UINavigationController, UINavigati
   var colors = W3WColorSet.lightDarkMode
   
   // mode to launch in:  voice or text
-  var launchMode = W3WAddressValidatorLaunchMode.text
+  var launchMode = W3WAddressValidatorLaunchMode.voice
   
   // root view controller
   let rootViewController = W3WViewController()
@@ -89,7 +89,7 @@ open class W3WAddressValidatorViewController: UINavigationController, UINavigati
   ///     - service: a street address validator service conforming to W3WAddressValidatorProtocol
   ///     - colors: A W3WColorSet specifying the colours to use (optional)
   ///     - launchMode: tells the component to launch directly into voice or text mode
-  public init(w3w: W3WProtocolV3, service: W3WAddressValidatorProtocol, colors: W3WColorSet = .lightDarkMode, launchMode: W3WAddressValidatorLaunchMode = .text) {
+  public init(w3w: W3WProtocolV3, service: W3WAddressValidatorProtocol, colors: W3WColorSet = .lightDarkMode, launchMode: W3WAddressValidatorLaunchMode = .voice) {
     self.launchMode = launchMode
 
     // if the API was passed in, then we use a copy.  This keeps all the custom headers unique to this object
@@ -121,7 +121,7 @@ open class W3WAddressValidatorViewController: UINavigationController, UINavigati
   ///     - data8ApiKey: you API key for Data8
   ///     - colors: A W3WColorSet specifying the colours to use (optional)
   ///     - launchMode: tells the component to launch directly into voice or text mode
-  public init(w3w: W3WProtocolV3, data8ApiKey: String, colors: W3WColorSet = .lightDarkMode, launchMode: W3WAddressValidatorLaunchMode = .text) {
+  public init(w3w: W3WProtocolV3, data8ApiKey: String, colors: W3WColorSet = .lightDarkMode, launchMode: W3WAddressValidatorLaunchMode = .voice) {
     self.launchMode = launchMode
 
     // if the API was passed in, then we use a copy.  This keeps all the custom headers unique to this object
@@ -149,7 +149,7 @@ open class W3WAddressValidatorViewController: UINavigationController, UINavigati
   ///     - swiftCompleteApiKey: you API key for Swift Complete
   ///     - colors: A W3WColorSet specifying the colours to use (optional)
   ///     - launchMode: tells the component to launch directly into voice or text mode
-  public init(w3w: W3WProtocolV3, swiftCompleteApiKey: String, colors: W3WColorSet = .lightDarkMode, launchMode: W3WAddressValidatorLaunchMode = .text) {
+  public init(w3w: W3WProtocolV3, swiftCompleteApiKey: String, colors: W3WColorSet = .lightDarkMode, launchMode: W3WAddressValidatorLaunchMode = .voice) {
     self.launchMode = launchMode
 
     // if the API was passed in, then we use a copy.  This keeps all the custom headers unique to this object
@@ -177,7 +177,7 @@ open class W3WAddressValidatorViewController: UINavigationController, UINavigati
   ///     - loqateApiKey: you API key for Loqate
   ///     - colors: A W3WColorSet specifying the colours to use (optional)
   ///     - launchMode: tells the component to launch directly into voice or text mode
-  public init(w3w: W3WProtocolV3, loqateApiKey: String, colors: W3WColorSet = .lightDarkMode, launchMode: W3WAddressValidatorLaunchMode = .text) {
+  public init(w3w: W3WProtocolV3, loqateApiKey: String, colors: W3WColorSet = .lightDarkMode, launchMode: W3WAddressValidatorLaunchMode = .voice) {
     self.launchMode = launchMode
 
     // if the API was passed in, then we use a copy.  This keeps all the custom headers unique to this object
@@ -202,36 +202,6 @@ open class W3WAddressValidatorViewController: UINavigationController, UINavigati
   required public init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
-  
-  /// common configuration for all init calls
-//  func config(w3w: W3WProtocolV3, colors: W3WColorSet = .lightDarkMode, launchMode: W3WAddressValidatorLaunchMode = .text) {
-//    self.launchMode = launchMode
-//
-//    // if the API was passed in, then we use a copy.  This keeps all the custom headers unique to this object
-//    if let api = w3w as? What3WordsV3 {
-//      self.w3w = api.copy(api: api)
-//    } else {
-//      self.w3w = w3w
-//    }
-//
-//    self.colors = colors
-//    self.autosuggest = W3WAutosuggestHelper(w3w)
-//
-//    // if the API was used, then we set up voice
-//    if let api = w3w as? What3WordsV3 {
-//      self.voiceViewController = W3WVoiceViewController(api: api)
-//    }
-//
-//    // if the API was used, then we set up custom headers
-//    if let api = w3w as? What3WordsV3 {
-//      api.updateHeader(key: W3WSettings.addresssValidatorHttpHeaderKey, value: api.getHeaderValue(version: W3WSettings.W3WSwiftComponentsAddressValidatorVersion))
-//    }
-//
-//    // init all the other member variables
-//    self.delegate = self
-//  }
-  
   
   
   func setHeaders() {
@@ -306,6 +276,12 @@ open class W3WAddressValidatorViewController: UINavigationController, UINavigati
       }
     }
     
+    // handle errors coming from voice 
+    voiceViewController?.onError = { [weak self] error in
+      self?.onError(W3WAddressValidatorComponentError.voiceApiError(error: error))
+    }
+
+    
     updateColors()
   }
     
@@ -355,9 +331,12 @@ open class W3WAddressValidatorViewController: UINavigationController, UINavigati
     // autosuggest called when there is a keystroke
     searchField.onTextChange = { [weak self] text in
       if self?.w3w.isPossible3wa(text: text) ?? false {
-        self?.autosuggest.update(text: text, options: self?.options ?? []) { error in
-          self?.addressValidatorTableViewController.set(items: self?.suggestionsToNodes(suggestions: self?.autosuggest.suggestions)  ?? [])
-          //self?.addressValidatorTableViewController.highlight(match: { cell in cell.title == text })
+        self?.autosuggest.update(text: text, options: self?.options ?? []) { [weak self] error in
+          if let e = error {
+            self?.onError(W3WAddressValidatorComponentError.apiError(error: e))
+          } else {
+            self?.addressValidatorTableViewController.set(items: self?.suggestionsToNodes(suggestions: self?.autosuggest.suggestions)  ?? [])
+          }
         }
       } else {
         self?.set(suggestions: [])

@@ -16,6 +16,7 @@ public enum W3WAddressValidatorComponentError: Error, CustomStringConvertible {
   case internalInconsistancy
   
   case apiError(error: W3WError)
+  case voiceApiError(error: W3WVoiceError)
   case voiceSocketError(error: W3WVoiceSocketError)
   case microphoneError(error: W3WMicrophoneError)
   case addressValidator(error: W3WAddressValidatorError)
@@ -26,6 +27,7 @@ public enum W3WAddressValidatorComponentError: Error, CustomStringConvertible {
     case .internalInconsistancy:  return "Something went wrong internally"
       
     case .apiError(error: let error):  return String(describing: error)
+    case .voiceApiError(let error):    return String(describing: error)
     case .voiceSocketError(let error): return String(describing: error)
     case .microphoneError(let error):  return String(describing: error)
     case .addressValidator(let error): return String(describing: error)
