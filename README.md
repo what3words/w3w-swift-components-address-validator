@@ -30,6 +30,12 @@ If you use this component you will also need a what3words API key.  This is to e
 
 ### UIKit
 
+##### Example
+
+An example can be found in [/Examples/WatchOS/WatchOSAddressValidator.xcodeproj](Examples/WatchOS/WatchOSAddressValidator.xcodeproj)
+
+##### Overview
+
 The UIKit version is `W3WSuAddressValidator`. It is derived from a `UIViewController`.  Simply instantiate it and present it on your view stack, preferably in a popup modal view.
 
 ```Swift

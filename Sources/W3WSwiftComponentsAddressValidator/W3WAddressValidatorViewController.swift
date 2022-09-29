@@ -56,7 +56,8 @@ open class W3WAddressValidatorViewController: UINavigationController, UINavigati
   var service: W3WAddressValidatorProtocol
 
   // the input text field
-  public var searchField: W3WSearchController! // W3WAutoSearchController! // W3WAutoSuggestSearchController! //
+  //public var searchField: W3WSearchController! // W3WAutoSearchController! // W3WAutoSuggestSearchController! //
+  public var searchField: W3WAutoSuggestSearchController!
   
   // default colors
   var colors = W3WColorSet.lightDarkMode
@@ -256,12 +257,9 @@ open class W3WAddressValidatorViewController: UINavigationController, UINavigati
     }
     
     // tell address what to do when a user selects a suggestion
-    addressValidatorTableViewController.onRowSelected = { [weak self] address, indexPath in
-      self?.userSelected(address: address)
-//      if let a = address as? W3WValidatorNodeSuggestion {
-//        self?.suggestion = a.suggestion
-//      }
-    }
+//    addressValidatorTableViewController.onRowSelected = { [weak self] address, indexPath in
+//      self?.userSelected(address: address)
+//    }
 
     // when the voice input returns suggestions, do a address search
     voiceViewController?.onSuggestions = { suggestions in
@@ -312,7 +310,13 @@ open class W3WAddressValidatorViewController: UINavigationController, UINavigati
   /// show the text entry mode
   func showTextEntryMode() {
     // give the tableview to the searchfield
-    searchField = W3WSearchController(searchResultsController: addressValidatorTableViewController)
+    //searchField = W3WSearchController(searchResultsController: addressValidatorTableViewController)
+    searchField = W3WAutoSuggestSearchController()
+    searchField.set(w3w)
+    searchField.set(voice: true)
+    searchField.onSuggestionSelected = { [weak self] suggestion in
+      self?.userSelected(suggestion: suggestion)
+    }
 
     let instructions = UILabel(frame: .w3wWhatever)
     instructions.numberOfLines = 2
@@ -329,21 +333,21 @@ open class W3WAddressValidatorViewController: UINavigationController, UINavigati
     self.additionalSafeAreaInsets = UIEdgeInsets(top: W3WPadding.bold.value + W3WPadding.thin.value, left: 0.0, bottom: 0.0, right: 0.0)
     
     // autosuggest called when there is a keystroke
-    searchField.onTextChange = { [weak self] text in
-      if self?.w3w.isPossible3wa(text: text) ?? false {
-        self?.autosuggest.update(text: text, options: self?.options ?? []) { [weak self] error in
-          if let e = error {
-            self?.onError(W3WAddressValidatorComponentError.apiError(error: e))
-          } else {
-            self?.addressValidatorTableViewController.set(items: self?.suggestionsToNodes(suggestions: self?.autosuggest.suggestions)  ?? [])
-          }
-        }
-      } else {
-        self?.set(suggestions: [])
-      }
-      
-      return true
-    }
+//    searchField.onTextChange = { [weak self] text in
+//      if self?.w3w.isPossible3wa(text: text) ?? false {
+//        self?.autosuggest.update(text: text, options: self?.options ?? []) { [weak self] error in
+//          if let e = error {
+//            self?.onError(W3WAddressValidatorComponentError.apiError(error: e))
+//          } else {
+//            self?.addressValidatorTableViewController.set(items: self?.suggestionsToNodes(suggestions: self?.autosuggest.suggestions)  ?? [])
+//          }
+//        }
+//      } else {
+//        self?.set(suggestions: [])
+//      }
+//
+//      return true
+//    }
 
     // settings
     searchField.definesPresentationContext = true
