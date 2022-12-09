@@ -81,7 +81,7 @@ public struct W3WSuStreetAddressItem: View {
       if let a = address as? W3WValidatorNodeList {
         if showCounts, let childCount = (a.subItemCount ?? a.children?.count),  model.service.supportsSubitemCounts {
           if childCount > 0 {
-            W3WSubResultCountIndicator(display: String(childCount), color: colors.tint.current.suColor)
+            W3WSubResultCountIndicator(display: String(childCount), color: colors.highlight.current.suColor)
           }
         } else {
           W3WSubResultCountIndicator(display: "＞", color: colors.background.current.suColor)
