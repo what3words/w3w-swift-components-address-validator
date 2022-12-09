@@ -13,7 +13,6 @@
 		018D2C9728B3A16B005FEAE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 018D2C9528B3A16B005FEAE4 /* Main.storyboard */; };
 		018D2C9928B3A16D005FEAE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 018D2C9828B3A16D005FEAE4 /* Assets.xcassets */; };
 		018D2C9C28B3A16D005FEAE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 018D2C9A28B3A16D005FEAE4 /* LaunchScreen.storyboard */; };
-		018D2CA828B3A354005FEAE4 /* W3WSwiftApi in Frameworks */ = {isa = PBXBuildFile; productRef = 018D2CA728B3A354005FEAE4 /* W3WSwiftApi */; };
 		018D2CAD28B3BF65005FEAE4 /* W3WSwiftComponentsAddressValidator in Frameworks */ = {isa = PBXBuildFile; productRef = 018D2CAC28B3BF65005FEAE4 /* W3WSwiftComponentsAddressValidator */; };
 /* End PBXBuildFile section */
 
@@ -35,7 +34,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				018D2CAD28B3BF65005FEAE4 /* W3WSwiftComponentsAddressValidator in Frameworks */,
-				018D2CA828B3A354005FEAE4 /* W3WSwiftApi in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,7 +104,6 @@
 			);
 			name = iOSAddressValidator;
 			packageProductDependencies = (
-				018D2CA728B3A354005FEAE4 /* W3WSwiftApi */,
 				018D2CAC28B3BF65005FEAE4 /* W3WSwiftComponentsAddressValidator */,
 			);
 			productName = iOSAddressValidator;
@@ -138,7 +135,6 @@
 			);
 			mainGroup = 018D2C8328B3A16B005FEAE4;
 			packageReferences = (
-				018D2CA628B3A354005FEAE4 /* XCRemoteSwiftPackageReference "w3w-swift-wrapper" */,
 			);
 			productRefGroup = 018D2C8D28B3A16B005FEAE4 /* Products */;
 			projectDirPath = "";
@@ -316,7 +312,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = YC9564MTQY;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iOSAddressValidator/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -344,7 +340,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = YC9564MTQY;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iOSAddressValidator/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -388,23 +384,7 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		018D2CA628B3A354005FEAE4 /* XCRemoteSwiftPackageReference "w3w-swift-wrapper" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/what3words/w3w-swift-wrapper.git";
-			requirement = {
-				branch = staging;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		018D2CA728B3A354005FEAE4 /* W3WSwiftApi */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 018D2CA628B3A354005FEAE4 /* XCRemoteSwiftPackageReference "w3w-swift-wrapper" */;
-			productName = W3WSwiftApi;
-		};
 		018D2CAC28B3BF65005FEAE4 /* W3WSwiftComponentsAddressValidator */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = W3WSwiftComponentsAddressValidator;

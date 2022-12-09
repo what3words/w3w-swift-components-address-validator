@@ -22,7 +22,6 @@ class ViewController: UIViewController {
     let swiftCompleteApiKey = "YourSwiftCompleteApiKey" // this component also supports Loqate and Data8
     
     let validator = W3WAddressValidatorViewController(w3w: api, swiftCompleteApiKey: swiftCompleteApiKey) // for Loqate and Data8, change the second parameter and it's label appropriately
-    validator.view.backgroundColor = .orange
     
     // set the focus to a nearby location
     let options = W3WOptions().focus(CLLocationCoordinate2D(latitude: 51.50998, longitude: -0.1337))

@@ -90,7 +90,6 @@
 		01C66013282296BA00A8AE56 = {
 			isa = PBXGroup;
 			children = (
-				01C660472822970A00A8AE56 /* Packages */,
 				01C66022282296BB00A8AE56 /* WatchOSAddressValidator WatchKit App */,
 				01C6602D282296BE00A8AE56 /* WatchOSAddressValidator WatchKit Extension */,
 				01C6601B282296BA00A8AE56 /* Products */,
@@ -136,13 +135,6 @@
 				01C66037282296BF00A8AE56 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		01C660472822970A00A8AE56 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Packages;
 			sourceTree = "<group>";
 		};
 		01C6604C282297EF00A8AE56 /* Frameworks */ = {

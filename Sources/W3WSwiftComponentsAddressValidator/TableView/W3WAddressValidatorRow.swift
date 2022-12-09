@@ -41,7 +41,7 @@ public class W3WAddressValidatorRow: UITableViewCell {
   var showCount = false
   
   /// colors to use
-  var colors = W3WColorSet.lightDarkMode
+  public var colors = W3WColorSet.lightDarkMode
   
   /// separator line, to replace the built in one, as we don't one one at the top of the view
   let separatorLine = UIView(frame: .w3wWhatever)

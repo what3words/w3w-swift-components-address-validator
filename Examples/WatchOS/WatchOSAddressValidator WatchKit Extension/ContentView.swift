@@ -30,11 +30,10 @@ struct ContentView: View {
   // what3words API key - get yours for free here: https://what3words.com/select-plan
   let w3wApiKey = "YourWhat3wordsApiKey"
   
-  // API keys - the second parameter of the W3WAddressFinderSwiftUI constructor can take swiftCompleteApiKey, data8ApiKey, or loqateApiKey depending on which servie you would like to use
+  // API keys - the second parameter of the W3WAddressFinderSwiftUI constructor can take
+  // swiftCompleteApiKey, data8ApiKey, or loqateApiKey depending on which service you would like to use
+  // The Loqate option is in beta, and shouldn't be used in live apps until further notice.
   let swiftCompleteApiKey = "YourData8ApiKey"     // Swift Complete: https://www.swiftcomplete.com
-  let data8ApiKey         = "YourData8ApiKey"     // Data 8: https://www.data-8.co.uk/
-  let loqateApiKey        = "YourLoqateApiKey"    // Loqate: https://www.loqate.com/
-
   
   var body: some View {
     

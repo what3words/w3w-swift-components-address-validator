@@ -3,7 +3,7 @@
 Overview
 --------
 
-This package provides components to help your user find an old fashioned street address from a three word address by connecting with 3rd party address validation services.  It supports [Loqate](https://www.loqate.com/), [Data8](https://www.data-8.co.uk), and [Swift Complete](https://www.swiftcomplete.com).
+This package provides components to help your user find an old fashioned street address from a three word address by connecting with 3rd party address validation services.  It supports <!--- [Loqate](https://www.loqate.com/), ---> [Data8](https://www.data-8.co.uk), [Swift Complete](https://www.swiftcomplete.com), and any other services currently in the [w3w-swift-address-validators](https://github.com/what3words/w3w-swift-address-validators) package which is a dependancy of this package.
 
 There is an iOS UIKit component and a watchOS SwiftUI component.
 
@@ -16,13 +16,13 @@ Notice the first one is prefixed with `W3WSwift` and the second `W3WSwiftUI`.  T
 
 ##### Choosing a service
 
-Create an account with either [Loqate](https://www.loqate.com/), [Data8](https://www.data-8.co.uk), or [Swift Complete](https://www.swiftcomplete.com) and get an API key from them.
+Create an account with either <!--- [Loqate](https://www.loqate.com/), ---> [Data8](https://www.data-8.co.uk), or [Swift Complete](https://www.swiftcomplete.com) and get an API key from them.
 
 When instantiating the component for UIKit or SwiftUI the second parameter takes the key sets the service.  Use the appropriate parameter and label:
 
 * For Data8 use: `data8ApiKey: String`
 * For Swift Complete use: `swiftCompleteApiKey: String`
-* For Loqate use: `loqateApiKey: String`
+<!--- * For Loqate use: `loqateApiKey: String` --->
 
 ##### what3words
 
